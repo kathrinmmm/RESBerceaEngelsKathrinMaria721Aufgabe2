@@ -9,7 +9,11 @@ public class Charakter {
     private String region;
     private List<Produkt> produkts;
 
-    public Character(String name, String region, List<Produkt> produkts) {
+    public Charakter(String name, String location, List<Produkt> charakterProdukts) {
+        this.name = name;
+    }
+
+    public void Character(String name, String region, List<Produkt> produkts) {
         this.name = name;
         this.region = region;
         this.produkts = produkts;
@@ -55,5 +59,13 @@ public class Charakter {
                 ", region='" + region + '\'' +
                 ", produkts=" + produkts +
                 '}';
+    }
+
+    public float getPrice() {
+            return 0;
+    }
+
+    public String getUnivers() {
+        return null;
     }
 }

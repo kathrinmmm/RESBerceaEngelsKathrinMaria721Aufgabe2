@@ -5,12 +5,15 @@ public class Produkt {
     private int id;
     private String name;
     private float price;
-    private String universum;
+    private static String universum;
 
     public Produkt(String name, float price, String universum) {
         this.name = name;
         this.price = price;
         this.universum = universum;
+    }
+
+    public static String getuniversum() { return universum;
     }
 
     public int getId() {

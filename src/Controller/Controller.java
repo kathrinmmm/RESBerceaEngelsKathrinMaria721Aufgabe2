@@ -2,7 +2,9 @@ package src.Controller;
 
 import src.Modell.Charakter;
 import src.Modell.Produkt;
+import src.Repository.CharakterRepository;
 import src.Repository.IRepository;
+import src.Repository.ProduktRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,10 +13,15 @@ import java.util.List;
 public class Controller {
 
     private final IRepository<Produkt> produktIRepository;
-    private final IRepository<Charakter> charakterIRepository;
+    private final CharakterRepository charakterIRepository;
 
     public Controller() {
-        this.produktIRepository = new ProduktRepository();
+        this.produktIRepository = new ProduktRepository() {
+            @Override
+            public void update(Produkt produkt) {
+
+            }
+        };
         this.charakterIRepository = new CharakterRepository();
     }
 
@@ -76,48 +83,38 @@ public class Controller {
         }
     }
 
-//    public void findCustomersBySeason(String season) {
-//        for (Customer customer : getAllCharakters()) {
-//            List<Product> customerProducts = customer.getProducts();
-//            for (Product product : customerProducts) {
-//                if (product.getSeason().equalsIgnoreCase(season)) {
-//                    System.out.println(customer);
-//                }
-//            }
-//        }
-//    }
 
-    public void sortProduktsForCharakterByUnivers(int produktId, String produkt) {
+    public void sortProduktsForCharakterByUnivers(int produktId, String order) {
         Charakter charakter = getCharakter(produktId);
-        if (produkt.equalsIgnoreCase("asc")) {
+        if (order.equalsIgnoreCase("asc")) {
             List<Produkt> charakterProdukts = charakter.getProdukts();
             charakterProdukts.sort(Comparator.comparing(Produkt::getName));
             System.out.println("Produkts sorted by Univers (ascending):");
             for (Produkt produkt1 : charakterProdukts) {
                 System.out.println(produkt1.toString());
             }
-        } else if (produkt.equalsIgnoreCase("desc")) {
+        } else if (order.equalsIgnoreCase("desc")) {
             List<Produkt> customerProdukts = charakter.getProdukts();
             customerProdukts.sort(Comparator.comparing(Produkt::getName).reversed());
             System.out.println("Produkts sorted by name (descending):");
-            for (Produkt produkt : customerProdukts) {
-                System.out.println(produkt.toString());
+            for (Produkt produkt1 : customerProdukts) {
+                System.out.println(produkt1.toString());
             }
         } else {
             System.out.println("Typo.. please try again");
         }
     }
 
-    public void sortProduktsForCharakterByPrice(int charakterId, String produkt) {
+    public void sortProduktsForCharakterByPrice(int charakterId, String order) {
         Charakter charakter = getCharakter(charakterId);
-        if (produkt.equalsIgnoreCase("asc")) {
+        if (order.equalsIgnoreCase("asc")) {
             List<Produkt> customerProdukts = charakter.getProdukts();
             customerProdukts.sort(Comparator.comparingDouble(Produkt::getPrice));
             System.out.println("Produkts sorted by price (ascending):");
             for (Produkt produkt1 : customerProdukts) {
-                System.out.println(produkt.toString());
+                System.out.println(order.toString());
             }
-        } else if (produkt.equalsIgnoreCase("desc")) {
+        } else if (order.equalsIgnoreCase("desc")) {
             List<Produkt> customerProdukts = charakter.getProdukts();
             customerProdukts.sort(Comparator.comparingDouble(Produkt::getPrice).reversed());
             System.out.println("Produkts sorted by price (descending):");
@@ -127,5 +124,14 @@ public class Controller {
         } else {
             System.out.println("Typo.. please try again");
         }
+    }
+
+    public void updateProdukt(int id, String newName, float newPrice, String newUniversum) {
+        Produkt produkt = getProdukt(id);
+    }
+
+    public Charakter[] getAllCharaktere() {
+
+        return null;
     }
 }

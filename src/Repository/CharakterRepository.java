@@ -1,22 +1,23 @@
 package src.Repository;
 
+import src.Modell.Charakter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharakterRepository implements IRepository<Character> {
+public class CharakterRepository implements IRepository<Charakter> {
 
-    private final List<Character> characters = new ArrayList<>();
+    private final List<Charakter> characters = new ArrayList<Charakter>();
     private int currentId = 1;
 
-    @Override
-    public void create(Character obj) {
+    public void create(Charakter obj) {
         obj.setId(currentId++);
         characters.add(obj);
     }
 
     @Override
-    public Character read(int id) {
-        for (Character character : characters) {
+    public Charakter read(int id) {
+        for (Charakter character : characters) {
             if (character.getId() == id) {
                 return character;
             }
@@ -25,12 +26,12 @@ public class CharakterRepository implements IRepository<Character> {
     }
 
     @Override
-    public void update(Character obj) {
-        Character character = read(obj.getId());
+    public void update(Charakter obj) {
+        Charakter character = read(obj.getId());
         if (character != null) {
             character.setName(obj.getName());
             character.setRegion(obj.getRegion());
-            character.setProducts(obj.getProducts());
+            character.setProdukts(obj.getProdukts());
         }
     }
 
@@ -40,7 +41,7 @@ public class CharakterRepository implements IRepository<Character> {
     }
 
     @Override
-    public List<Character> getAll() {
+    public List<Charakter> getAll() {
         return characters;
     }
 }

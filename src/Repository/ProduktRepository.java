@@ -1,9 +1,12 @@
 package src.Repository;
 
+import src.Modell.Charakter;
+import src.Modell.Produkt;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProduktRepository implements IRepository<Produkt> {
+public abstract class ProduktRepository implements IRepository<Produkt> {
 
     private final List<Produkt> produkts = new ArrayList<>();
     private int currentId = 1;
@@ -25,12 +28,12 @@ public class ProduktRepository implements IRepository<Produkt> {
     }
 
     @Override
-    public void update(Produkt obj) {
+    public void update(Charakter obj) {
         Produkt produkt = read(obj.getId());
         if (produkt != null) {
             produkt.setName(obj.getName());
             produkt.setPrice(obj.getPrice());
-            produkt.setUniversum(obj.getUniversum());
+            produkt.setUniversum(obj.getUnivers());
         }
     }
 
