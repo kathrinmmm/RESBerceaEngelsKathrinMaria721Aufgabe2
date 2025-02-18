@@ -2,6 +2,7 @@ package src.Controller;
 
 import src.Modell.Charakter;
 import src.Modell.Produkt;
+import src.Repository.IRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -34,10 +35,10 @@ public class Controller {
     }
 
     public void updateProduct(int id, String name, float price, String universum) {
-        Product produkt = getProdukt(id);
+        Produkt produkt = getProdukt(id);
         produkt.setName(name);
         produkt.setPrice(price);
-        produkt.setSeason(universum);
+        produkt.setUniversum(universum);
         produktIRepository.update(produkt);
     }
 
@@ -75,7 +76,37 @@ public class Controller {
         }
     }
 
+//    public void findCustomersBySeason(String season) {
+//        for (Customer customer : getAllCharakters()) {
+//            List<Product> customerProducts = customer.getProducts();
+//            for (Product product : customerProducts) {
+//                if (product.getSeason().equalsIgnoreCase(season)) {
+//                    System.out.println(customer);
+//                }
+//            }
+//        }
+//    }
 
+    public void sortProduktsForCharakterByUnivers(int produktId, String produkt) {
+        Charakter charakter = getCharakter(produktId);
+        if (produkt.equalsIgnoreCase("asc")) {
+            List<Produkt> charakterProdukts = charakter.getProdukts();
+            charakterProdukts.sort(Comparator.comparing(Produkt::getName));
+            System.out.println("Produkts sorted by Univers (ascending):");
+            for (Produkt produkt1 : charakterProdukts) {
+                System.out.println(produkt1.toString());
+            }
+        } else if (produkt.equalsIgnoreCase("desc")) {
+            List<Produkt> customerProdukts = charakter.getProdukts();
+            customerProdukts.sort(Comparator.comparing(Produkt::getName).reversed());
+            System.out.println("Produkts sorted by name (descending):");
+            for (Produkt produkt : customerProdukts) {
+                System.out.println(produkt.toString());
+            }
+        } else {
+            System.out.println("Typo.. please try again");
+        }
     }
+
 
 }
