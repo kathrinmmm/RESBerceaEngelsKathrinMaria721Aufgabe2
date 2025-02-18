@@ -74,7 +74,7 @@ public class main {
                     String name = scanner.nextLine();
                     System.out.print("Enter product price: ");
                     float price = Float.parseFloat(scanner.nextLine());
-                    System.out.print("Enter product season: ");
+                    System.out.print("Enter product universum: ");
                     String universum = scanner.nextLine();
                     Produkt newProdukt = new Produkt(name, price, universum);
                     controller.addProdukt(newProdukt);
