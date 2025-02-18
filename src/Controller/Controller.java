@@ -108,5 +108,24 @@ public class Controller {
         }
     }
 
-
+    public void sortProduktsForCharakterByPrice(int charakterId, String produkt) {
+        Charakter charakter = getCharakter(charakterId);
+        if (produkt.equalsIgnoreCase("asc")) {
+            List<Produkt> customerProdukts = charakter.getProdukts();
+            customerProdukts.sort(Comparator.comparingDouble(Produkt::getPrice));
+            System.out.println("Produkts sorted by price (ascending):");
+            for (Produkt produkt1 : customerProdukts) {
+                System.out.println(produkt.toString());
+            }
+        } else if (produkt.equalsIgnoreCase("desc")) {
+            List<Produkt> customerProdukts = charakter.getProdukts();
+            customerProdukts.sort(Comparator.comparingDouble(Produkt::getPrice).reversed());
+            System.out.println("Produkts sorted by price (descending):");
+            for (Produkt product : customerProdukts) {
+                System.out.println(product.toString());
+            }
+        } else {
+            System.out.println("Typo.. please try again");
+        }
+    }
 }
