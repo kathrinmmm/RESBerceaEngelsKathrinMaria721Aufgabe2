@@ -48,7 +48,14 @@ public class Controller {
         produkt.setUniversum(universum);
         produktIRepository.update(produkt);
     }
-
+    /**
+     * Aktualisiert die Eigenschaften eines Charakters mit der angegebenen ID.
+     *
+     * @param id        Die eindeutige Identifikationsnummer des Charakters.
+     * @param name      Der neue Name des Charakters.
+     * @param region    Die neue Region des Charakters.
+     * @param produktId Die ID des Produkts, das dem Charakter hinzugefügt werden soll.
+     */
     public void updateCharakter(int id, String name, String region, int produktId) {
         Charakter charaktercharakter = getCharakter(id);
         charaktercharakter.setName(name);
@@ -83,7 +90,12 @@ public class Controller {
         }
     }
 
-
+    /**
+     * Sortiert die Produkts eines Charakters nach ihrem Namen in aufsteigender oder absteigender Reihenfolge.
+     *
+     * @param produktId Die ID des Charakters, dessen Produkts sortiert werden sollen.
+     * @param order     Die Sortierreihenfolge: "asc" für aufsteigend, "desc" für absteigend.
+     */
     public void sortProduktsForCharakterByUnivers(int produktId, String order) {
         Charakter charakter = getCharakter(produktId);
         if (order.equalsIgnoreCase("asc")) {
