@@ -60,12 +60,19 @@ public class Controller {
         charakterIRepository.delete(id);
     }
 
-    public List<Produkt> getAllProducts() {
+    public List<Produkt> getAllProdukts() {
         return produktIRepository.getAll();
     }
 
     public List<Charakter> getAllCharakters() {
         return charakterIRepository.getAll();
+    }
+
+    public void filterProduktByUniversum(String universum) {
+        for (Produkt produkt : getAllProdukts()) {
+            if (Produkt.getuniversum().equalsIgnoreCase(universum))
+                System.out.println(produkt);
+        }
     }
 
 
